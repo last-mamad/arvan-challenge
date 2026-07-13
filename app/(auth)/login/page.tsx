@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SignInForm } from "@/app/(auth)/sign-in/SignInForm";
+import { SignInForm } from "@/app/(auth)/login/SignInForm";
 
 const TITLE = "Sign in";
 const DESCRIPTION =
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     follow: false,
   },
   alternates: {
-    canonical: "/sign-in",
+    canonical: "/login",
   },
   openGraph: {
     title: `${TITLE} · Blog Admin Dashboard`,

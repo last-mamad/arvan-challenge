@@ -12,7 +12,7 @@ import { useUiStore } from "@/lib/store/ui-store";
 
 const SIDEBAR_ITEMS = [
   { title: "All Articles", href: "/dashboard/articles" },
-  { title: "New Article", href: "/dashboard/articles/new" },
+  { title: "New Article", href: "/dashboard/articles/create" },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         onMenuClick={() => setSidebarOpen(true)}
         onLogout={() => {
           clearAuth();
-          router.replace("/sign-in");
+          router.replace("/login");
         }}
       />
       <div className="flex flex-1">

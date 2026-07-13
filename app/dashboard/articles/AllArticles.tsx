@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 import { Pagination } from "@/components/design-system/pagination";
 import { Message } from "@/components/ui/message";
@@ -10,8 +11,8 @@ import { POSTS_PAGE_SIZE, usePosts } from "@/hooks/usePosts";
 import { ArticlesTable } from "./_components/ArticlesTable";
 import { getArticleColumns } from "./_components/articleColumns";
 
-export default function AllArticles() {
-  const [page, setPage] = useState(1);
+export default function AllArticles({ page }: { page: number }) {
+  const router = useRouter();
   const { data, isPending, isError, error, isFetching } = usePosts(page);
 
   const skip = (page - 1) * POSTS_PAGE_SIZE;
@@ -39,7 +40,9 @@ export default function AllArticles() {
       <Pagination
         currentPage={page}
         totalPages={Math.ceil(data.total / POSTS_PAGE_SIZE)}
-        onPageChange={setPage}
+        onPageChange={(nextPage) =>
+          router.push(nextPage <= 1 ? "/dashboard/articles" : `/dashboard/articles?page=${nextPage}`)
+        }
         disabled={isFetching}
       />
     </div>

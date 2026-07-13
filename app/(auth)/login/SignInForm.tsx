@@ -8,7 +8,7 @@ import {
   signInFields,
   signInInitialValues,
   validationSchema,
-} from "@/app/(auth)/sign-in/formSchema";
+} from "@/app/(auth)/login/formSchema";
 import { Field } from "@/components/design-system/field";
 import { Input } from "@/components/ui/input";
 import { Section } from "@/components/ui/section";
@@ -75,7 +75,7 @@ function SignInForm() {
           })}
         </div>
         <Footer
-          href="/sign-up"
+          href="/register"
           isPending={loginMutation.isPending}
           linkText="Sign up now"
           linkTitle="Don't have an account?"

@@ -10,10 +10,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page } = await searchParams;
+  const parsed = Math.floor(Number(page));
+  const pageNumber = Number.isInteger(parsed) && parsed >= 1 ? parsed : 1;
+
   return (
     <Section title="All Posts">
-      <AllArticles />
+      <AllArticles page={pageNumber} />
     </Section>
   );
 }

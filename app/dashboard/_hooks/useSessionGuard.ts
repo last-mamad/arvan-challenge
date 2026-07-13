@@ -17,7 +17,7 @@ function useSessionGuard() {
     onSuccess: setTokens,
     onError: () => {
       clearAuth();
-      router.replace("/sign-in");
+      router.replace("/login");
     },
   });
 
@@ -35,7 +35,7 @@ function useSessionGuard() {
 
     if (!refreshToken) {
       clearAuth();
-      router.replace("/sign-in");
+      router.replace("/login");
       return;
     }
 

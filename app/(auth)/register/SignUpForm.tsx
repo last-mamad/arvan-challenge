@@ -5,7 +5,7 @@ import {
   signUpFields,
   signUpInitialValues,
   validationSchema,
-} from "@/app/(auth)/sign-up/formSchema";
+} from "@/app/(auth)/register/formSchema";
 import { Field } from "@/components/design-system/field";
 import { Input } from "@/components/ui/input";
 import { Section } from "@/components/ui/section";
@@ -75,7 +75,7 @@ function SignUpForm() {
           })}
         </div>
         <Footer
-          href="/sign-in"
+          href="/login"
           isPending={signUpMutation.isPending}
           linkText="Sign in now"
           linkTitle="Already have an account?"
