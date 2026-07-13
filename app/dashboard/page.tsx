@@ -1,39 +1,35 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { DashboardView } from "@/app/dashboard/_components/dashboard-view";
 
-import { Header } from "@/components/design-system/header";
-import { useAuthStore } from "@/lib/store/auth-store";
+const TITLE = "Dashboard";
+const DESCRIPTION =
+  "Overview of your Blog Admin Dashboard — manage posts, users, and account settings from one place.";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: ["dashboard", "admin panel", "blog management", "overview", "account"],
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: "/dashboard",
+  },
+  openGraph: {
+    title: `${TITLE} · Blog Admin Dashboard`,
+    description: DESCRIPTION,
+    type: "website",
+    siteName: "Blog Admin Dashboard",
+  },
+  twitter: {
+    card: "summary",
+    title: `${TITLE} · Blog Admin Dashboard`,
+    description: DESCRIPTION,
+  },
+};
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const user = useAuthStore((state) => state.user);
-  const clearAuth = useAuthStore((state) => state.clearAuth);
-
-  useEffect(() => {
-    if (!user) {
-      router.replace("/sign-in");
-    }
-  }, [user, router]);
-
-  if (!user) {
-    return null;
-  }
-
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header
-        userName={user.username}
-        title="Dashboard"
-        onLogout={() => {
-          clearAuth();
-          router.replace("/sign-in");
-        }}
-      />
-      <main className="flex flex-1 items-center justify-center p-8">
-        <p className="text-body1 text-neutral-fg1">Welcome, {user.firstName}!</p>
-      </main>
-    </div>
-  );
+  return <DashboardView />;
 }

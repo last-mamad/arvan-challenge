@@ -42,7 +42,10 @@ function showToast({
   title: string;
   description?: string;
 }) {
-  return sonnerToast.custom(() => <Toast type={type} title={title} description={description} />);
+  return sonnerToast.custom(() => <Toast type={type} title={title} description={description} />, {
+    position: "top-center",
+    className: "left-1/2 -translate-x-1/2",
+  });
 }
 
 export { Toast, toastVariants, showToast };
