@@ -4,7 +4,7 @@ import { toast as sonnerToast } from "sonner";
 import { cn } from "@/lib/utils";
 
 const toastVariants = cva(
-  "inline-flex w-fit items-center gap-1 rounded-[12px] px-4 py-3 shadow-[0px_8px_40px_0px_rgba(37,51,67,0.24)]",
+  "flex w-fit max-w-full items-center gap-1 rounded-[12px] px-4 py-3 shadow-[0px_8px_40px_0px_rgba(37,51,67,0.24)]",
   {
     variants: {
       type: {
@@ -26,9 +26,14 @@ type ToastProps = Omit<React.ComponentProps<"div">, "title"> &
 
 function Toast({ className, type = "success", title, description, ...props }: ToastProps) {
   return (
-    <div data-slot="toast" data-type={type} className={cn(toastVariants({ type }), className)} {...props}>
-      <p className="text-body2-strong whitespace-nowrap">{title}</p>
-      {description && <p className="text-caption1 whitespace-nowrap">{description}</p>}
+    <div
+      data-slot="toast"
+      data-type={type}
+      className={cn(toastVariants({ type }), className)}
+      {...props}
+    >
+      <p className="shrink-0 text-body2-strong whitespace-nowrap">{title}</p>
+      {description && <p className="min-w-0 truncate text-caption1">{description}</p>}
     </div>
   );
 }
@@ -44,7 +49,9 @@ function showToast({
 }) {
   return sonnerToast.custom(() => <Toast type={type} title={title} description={description} />, {
     position: "top-center",
-    className: "left-1/2 -translate-x-1/2",
+    // Force the sonner toast wrapper to full width and center our pill inside it,
+    // so it's symmetrically centered regardless of the wrapper's intrinsic width.
+    className: "flex w-full justify-center",
   });
 }
 

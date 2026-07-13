@@ -10,6 +10,7 @@ function Toaster({ position = "top-center", ...props }: ToasterProps) {
       className="toaster group"
       style={
         {
+          "--width": "min(360px, calc(100vw - 2rem))",
           "--normal-bg": "var(--color-neutral-bg1)",
           "--normal-text": "var(--color-neutral-fg1)",
           "--normal-border": "var(--color-neutral-st2)",
