@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/section";
 import { Metadata } from "next";
+import AllArticles from "./AllArticles";
 
 export const metadata: Metadata = {
   title: "Dashboard - Articles",
@@ -10,5 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Section title="All Posts" />;
+  return (
+    <Section title="All Posts">
+      <AllArticles />
+    </Section>
+  );
 }
