@@ -26,7 +26,7 @@ function SignInForm() {
     mutationFn: login,
     onSuccess: (data) => {
       setAuth(data);
-      router.push("/dashboard");
+      router.push("/dashboard/articles");
     },
     onError: (error) => {
       showToast({

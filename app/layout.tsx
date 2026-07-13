@@ -14,11 +14,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Blog Admin Dashboard",
-  description: "Abr Arvan challenge — blog admin dashboard",
-};
+const TITLE = "Dashboard";
+const DESCRIPTION =
+  "Overview of your Blog Admin Dashboard — manage posts, users, and account settings from one place.";
 
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: ["dashboard", "admin panel", "blog management", "overview", "account"],
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: `${TITLE} · Blog Admin Dashboard`,
+    description: DESCRIPTION,
+    type: "website",
+    siteName: "Blog Admin Dashboard",
+  },
+  twitter: {
+    card: "summary",
+    title: `${TITLE} · Blog Admin Dashboard`,
+    description: DESCRIPTION,
+  },
+};
 export default function RootLayout({
   children,
 }: Readonly<{

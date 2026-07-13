@@ -9,7 +9,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {
-    return NextResponse.redirect(new URL(isAuthenticated ? "/dashboard" : "/sign-in", request.url));
+    return NextResponse.redirect(new URL(isAuthenticated ? "/dashboard/articles" : "/sign-in", request.url));
   }
 
   if (pathname.startsWith("/dashboard") && !isAuthenticated) {
@@ -17,7 +17,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (AUTH_ROUTES.includes(pathname) && isAuthenticated) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL("/dashboard/articles", request.url));
   }
 
   return NextResponse.next();

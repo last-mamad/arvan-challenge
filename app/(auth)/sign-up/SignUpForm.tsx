@@ -26,7 +26,7 @@ function SignUpForm() {
     mutationFn: () => login(SIGN_UP_FALLBACK_CREDENTIALS),
     onSuccess: (data) => {
       setAuth(data);
-      router.push("/dashboard");
+      router.push("/dashboard/articles");
     },
     onError: (error) => {
       showToast({

@@ -4,10 +4,16 @@ import { useRouter } from "next/navigation";
 
 import { useSessionGuard } from "@/app/dashboard/_hooks/useSessionGuard";
 import { Header } from "@/components/design-system/header";
-import { useAuthStore } from "@/lib/store/auth-store";
+import { Sidebar } from "@/components/design-system/sidebar";
 import { Spinner } from "@/components/ui/spinner";
+import { useAuthStore } from "@/lib/store/auth-store";
 
-function DashboardView() {
+const SIDEBAR_ITEMS = [
+  { title: "All Articles", href: "/dashboard/articles" },
+  { title: "New Article", href: "/dashboard/articles/new" },
+];
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { user, clearAuth } = useAuthStore((state) => state);
   const { isPending } = useSessionGuard();
@@ -25,17 +31,16 @@ function DashboardView() {
     <div className="flex min-h-screen flex-col">
       <Header
         userName={user.firstName}
-        title="Dashboard"
+        title="Arvancloud Challenge"
         onLogout={() => {
           clearAuth();
           router.replace("/sign-in");
         }}
       />
-      <main className="flex flex-1 items-center justify-center p-8">
-        <p className="text-body1 text-neutral-fg1">Welcome, {user.firstName}!</p>
-      </main>
+      <div className="flex flex-1">
+        <Sidebar items={SIDEBAR_ITEMS} />
+        <main className="flex-1 p-8">{children}</main>
+      </div>
     </div>
   );
 }
-
-export { DashboardView };

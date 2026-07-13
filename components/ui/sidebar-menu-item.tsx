@@ -22,7 +22,7 @@ function SidebarMenuItem({
         "group flex w-full flex-col items-start p-2 text-left outline-none transition-colors",
         selected
           ? "bg-primary-bg1 hover:bg-primary-bg1-hover"
-          : "bg-neutral-bg1 hover:bg-neutral-bg1-hover active:bg-neutral-bg1-press",
+          : "bg-neutral-bg1 hover:bg-neutral-bg1-hover cursor-pointer active:bg-neutral-bg1-press",
         className,
       )}
       {...props}
