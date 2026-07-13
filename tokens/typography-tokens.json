@@ -1,0 +1,74 @@
+{
+  "fontFamily": {
+    "base": "Inter"
+  },
+  "fontWeights": {
+    "regular": 400,
+    "semiBold": 600
+  },
+  "fontSizes": {
+    "title3": "18px",
+    "body1": "16px",
+    "body2": "14px",
+    "caption1": "12px",
+    "caption2": "10px"
+  },
+  "lineHeights": {
+    "title3": "24px",
+    "body1": "24px",
+    "body2": "20px",
+    "caption1": "16px",
+    "caption2": "12px"
+  },
+  "letterSpacings": {
+    "title3": "-2%",
+    "body1": "-2%",
+    "body2": "-2%",
+    "caption1": "-2%",
+    "caption2": "-2%"
+  },
+  "textStyles": {
+    "title3": {
+      "fontSize": "title3",
+      "lineHeight": "title3",
+      "fontWeight": "semiBold",
+      "letterSpacing": "title3"
+    },
+    "body1": {
+      "fontSize": "body1",
+      "lineHeight": "body1",
+      "fontWeight": "semiBold",
+      "letterSpacing": "body1"
+    },
+    "body2": {
+      "fontSize": "body2",
+      "lineHeight": "body2",
+      "fontWeight": "regular",
+      "letterSpacing": "body2"
+    },
+    "body2Strong": {
+      "fontSize": "body2",
+      "lineHeight": "body2",
+      "fontWeight": "semiBold",
+      "letterSpacing": "body2"
+    },
+    "caption1": {
+      "fontSize": "caption1",
+      "lineHeight": "caption1",
+      "fontWeight": "regular",
+      "letterSpacing": "caption1"
+    },
+    "caption1Strong": {
+      "fontSize": "caption1",
+      "lineHeight": "caption1",
+      "fontWeight": "semiBold",
+      "letterSpacing": "caption1"
+    },
+    "caption2": {
+      "fontSize": "caption2",
+      "lineHeight": "caption2",
+      "fontWeight": "regular",
+      "letterSpacing": "caption2"
+    }
+  }
+}
