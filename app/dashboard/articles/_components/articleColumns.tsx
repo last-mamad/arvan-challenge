@@ -1,10 +1,24 @@
 import { EllipsisIcon } from "@/components/icons";
 import type { TableColumn } from "@/components/design-system/table";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, type DropdownMenuAction } from "@/components/ui/dropdown-menu";
 import { showToast } from "@/components/ui/toast";
 import type { Post } from "@/lib/api/posts";
 import { getExcerpt } from "@/lib/utils";
+
+/** Row actions shared by the desktop dropdown and the mobile action sheet. */
+export function getArticleActionItems(post: Post): DropdownMenuAction[] {
+  return [
+    {
+      title: "Edit",
+      onClick: () => showToast({ title: "Edit", description: post.title }),
+    },
+    {
+      title: "Delete",
+      onClick: () => showToast({ type: "error", title: "Delete", description: post.title }),
+    },
+  ];
+}
 
 export function getArticleColumns(skip: number): TableColumn<Post>[] {
   return [
@@ -61,16 +75,7 @@ export function getArticleColumns(skip: number): TableColumn<Post>[] {
               <EllipsisIcon className="size-5" />
             </Button>
           }
-          items={[
-            {
-              title: "Edit",
-              onClick: () => showToast({ title: "Edit", description: post.title }),
-            },
-            {
-              title: "Delete",
-              onClick: () => showToast({ type: "error", title: "Delete", description: post.title }),
-            },
-          ]}
+          items={getArticleActionItems(post)}
         />
       ),
     },

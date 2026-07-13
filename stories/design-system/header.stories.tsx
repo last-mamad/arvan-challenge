@@ -23,5 +23,16 @@ export const Default: Story = {
     userName: "<user>",
     title: "Arvancloud Challenge",
     onLogout: () => alert("logout"),
+    onMenuClick: () => alert("open menu"),
+  },
+};
+
+/** Below `md` the greeting is hidden and the hamburger + logout icon appear. */
+export const Mobile: Story = {
+  args: {
+    ...Default.args,
+  },
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
   },
 };

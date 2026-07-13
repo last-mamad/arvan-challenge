@@ -14,9 +14,11 @@ type SidebarItem = {
 type SidebarProps = {
   className?: string;
   items: SidebarItem[];
+  /** Called after navigating — used to close the mobile drawer. */
+  onNavigate?: () => void;
 };
 
-function Sidebar({ className, items }: SidebarProps) {
+function Sidebar({ className, items, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -34,7 +36,10 @@ function Sidebar({ className, items }: SidebarProps) {
           title={item.title}
           description={item.description}
           selected={pathname === item.href}
-          onClick={() => router.push(item.href)}
+          onClick={() => {
+            router.push(item.href);
+            onNavigate?.();
+          }}
         />
       ))}
     </nav>

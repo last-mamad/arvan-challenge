@@ -3,11 +3,11 @@
 import { useMemo, useState } from "react";
 
 import { Pagination } from "@/components/design-system/pagination";
-import { DataTable } from "@/components/design-system/table";
 import { Message } from "@/components/ui/message";
 import { Spinner } from "@/components/ui/spinner";
 import { ApiError } from "@/lib/api/client";
 import { POSTS_PAGE_SIZE, usePosts } from "@/hooks/usePosts";
+import { ArticlesTable } from "./_components/ArticlesTable";
 import { getArticleColumns } from "./_components/articleColumns";
 
 export default function AllArticles() {
@@ -29,7 +29,7 @@ export default function AllArticles() {
   return (
     <div className="flex w-full flex-col items-end gap-6">
       <div className="relative w-full">
-        <DataTable columns={columns} data={data.posts} getRowKey={(post) => post.id} />
+        <ArticlesTable columns={columns} posts={data.posts} />
         {isFetching && (
           <div className="absolute inset-0 flex items-center justify-center bg-neutral-bg1/60">
             <Spinner className="size-8" />
