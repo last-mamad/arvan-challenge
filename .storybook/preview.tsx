@@ -18,6 +18,13 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="font-[Inter] antialiased">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
