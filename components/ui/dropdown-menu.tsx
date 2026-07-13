@@ -30,9 +30,9 @@ function DropdownMenuItem({
       }}
       className={cn(
         "cursor-pointer flex w-full items-center gap-2 rounded-md p-2 text-body2 text-neutral-fg1 outline-none select-none",
-        "data-[highlighted]:bg-neutral-bg1-hover data-[highlighted]:text-neutral-fg1-hover",
+        "data-highlighted:bg-neutral-bg1-hover data-highlighted:text-neutral-fg1-hover",
         "active:bg-neutral-bg1-press active:text-neutral-fg1-press",
-        "data-[disabled]:pointer-events-none data-[disabled]:text-neutral-fg1-disable",
+        "data-disabled:pointer-events-none data-disabled:text-neutral-fg1-disable",
       )}
     >
       {isLoading ? (
@@ -65,7 +65,7 @@ function DropdownMenu({ trigger, items, contentClassName, ...props }: DropdownMe
           data-slot="dropdown-menu-content"
           sideOffset={4}
           className={cn(
-            "z-50 flex w-fit min-w-[144px] flex-col gap-1 rounded-[12px] bg-neutral-bg1 p-2 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.16)] outline-none",
+            "z-50 flex w-fit min-w-36 flex-col gap-1 rounded-[12px] bg-neutral-bg1 p-2 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.16)] outline-none",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
             "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",

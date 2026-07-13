@@ -19,7 +19,7 @@ const buttonVariants = cva(
         link: "text-info-fg1 text-body2-strong font-semibold hover:text-info-fg1-hover active:text-info-fg1-press disabled:text-info-fg1-disable",
       },
       size: {
-        default: "h-10 min-w-[72px] px-4 py-2.5 has-[>svg]:px-3.5",
+        default: "h-10 min-w-18 px-4 py-2.5 has-[>svg]:px-3.5",
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
         sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
