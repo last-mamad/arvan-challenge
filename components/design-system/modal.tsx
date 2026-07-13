@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const modalVariants = cva("flex w-full flex-col overflow-hidden rounded-md", {
   variants: {
     size: {
-      small: "max-w-114",
+      small: "max-w-xs sm:max-w-114",
       medium: "max-w-150",
       large: "max-w-200",
     },

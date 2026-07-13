@@ -10,7 +10,10 @@ function SectionHeader({ className, title, description, ...props }: SectionHeade
   return (
     <div
       data-slot="section-header"
-      className={cn("flex min-h-[92px] w-full items-center bg-neutral-bg1 p-6", className)}
+      className={cn(
+        "flex min-h-14 md:min-h-23 w-full items-center bg-neutral-bg1 p-2 md:p-6",
+        className,
+      )}
       {...props}
     >
       <HeaderContent title={title} description={description} className="flex-1" />

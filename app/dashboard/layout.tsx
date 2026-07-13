@@ -43,7 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       />
       <div className="flex flex-1">
         <Sidebar items={SIDEBAR_ITEMS} className="hidden md:flex" />
-        <main className="min-w-0 flex-1 bg-neutral-bg2 p-4 md:p-6">{children}</main>
+        <main className="min-w-0 flex-1 bg-neutral-bg2 p-2 md:p-6">{children}</main>
       </div>
 
       {/* Mobile navigation drawer */}

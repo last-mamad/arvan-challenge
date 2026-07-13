@@ -54,15 +54,23 @@ type DropdownMenuProps = Omit<
   trigger: React.ReactNode;
   items: DropdownMenuAction[];
   contentClassName?: string;
+  align?: React.ComponentProps<typeof DropdownMenuPrimitive.Content>["align"];
 };
 
-function DropdownMenu({ trigger, items, contentClassName, ...props }: DropdownMenuProps) {
+function DropdownMenu({
+  trigger,
+  items,
+  contentClassName,
+  align = "end",
+  ...props
+}: DropdownMenuProps) {
   return (
     <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props}>
       <DropdownMenuPrimitive.Trigger asChild>{trigger}</DropdownMenuPrimitive.Trigger>
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content
           data-slot="dropdown-menu-content"
+          align={align}
           sideOffset={4}
           className={cn(
             "z-50 flex w-fit min-w-36 flex-col gap-1 rounded-[12px] bg-neutral-bg1 p-2 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.16)] outline-none",
