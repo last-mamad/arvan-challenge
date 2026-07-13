@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { EllipsisIcon } from "@/components/icons";
 import { ActionSheet } from "@/components/design-system/action-sheet";
@@ -8,8 +9,8 @@ import { Modal } from "@/components/design-system/modal";
 import { Button } from "@/components/ui/button";
 import { ConfirmationContent } from "@/components/ui/confirmation-content";
 import { DropdownMenu, type DropdownMenuAction } from "@/components/ui/dropdown-menu";
-import { showToast } from "@/components/ui/toast";
 import { useDeletePost } from "@/hooks/usePosts";
+import { ARTICLES_PATH } from "@/lib/constants/constants";
 import { Post } from "@/lib/api/posts/interfaces";
 
 type ArticleRowActionsProps = {
@@ -19,6 +20,7 @@ type ArticleRowActionsProps = {
 };
 
 export function ArticleRowActions({ post, as }: ArticleRowActionsProps) {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const deleteMutation = useDeletePost();
@@ -28,7 +30,7 @@ export function ArticleRowActions({ post, as }: ArticleRowActionsProps) {
       title: "Edit",
       onClick: () => {
         setMenuOpen(false);
-        showToast({ title: "Edit", description: post.title });
+        router.push(`${ARTICLES_PATH}/${post.id}`);
       },
     },
     {

@@ -17,6 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import Footer from "../_components/Footer";
+import { ARTICLES_PATH } from "@/lib/constants/constants";
 
 function SignUpForm() {
   const router = useRouter();
@@ -26,7 +27,7 @@ function SignUpForm() {
     mutationFn: () => login(SIGN_UP_FALLBACK_CREDENTIALS),
     onSuccess: (data) => {
       setAuth(data);
-      router.push("/dashboard/articles");
+      router.push(ARTICLES_PATH);
     },
     onError: (error) => {
       showToast({

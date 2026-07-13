@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { ARTICLES_PATH } from "./lib/constants/constants";
 
 const AUTH_COOKIE_NAME = "auth-token";
 const AUTH_ROUTES = ["/login", "/register"];
@@ -9,7 +10,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {
-    return NextResponse.redirect(new URL(isAuthenticated ? "/dashboard/articles" : "/login", request.url));
+    return NextResponse.redirect(new URL(isAuthenticated ? ARTICLES_PATH : "/login", request.url));
   }
 
   if (pathname.startsWith("/dashboard") && !isAuthenticated) {
@@ -17,7 +18,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (AUTH_ROUTES.includes(pathname) && isAuthenticated) {
-    return NextResponse.redirect(new URL("/dashboard/articles", request.url));
+    return NextResponse.redirect(new URL(ARTICLES_PATH, request.url));
   }
 
   return NextResponse.next();

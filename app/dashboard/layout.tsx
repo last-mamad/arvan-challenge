@@ -9,10 +9,11 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuthStore } from "@/lib/store/auth-store";
 import { useUiStore } from "@/lib/store/ui-store";
+import { ARTICLES_PATH } from "@/lib/constants/constants";
 
 const SIDEBAR_ITEMS = [
-  { title: "All Articles", href: "/dashboard/articles" },
-  { title: "New Article", href: "/dashboard/articles/create" },
+  { title: "All Articles", href: ARTICLES_PATH },
+  { title: "New Article", href: `${ARTICLES_PATH}/create` },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

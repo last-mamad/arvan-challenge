@@ -4,11 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 
-import {
-  signInFields,
-  signInInitialValues,
-  validationSchema,
-} from "@/app/(auth)/login/formSchema";
+import { signInFields, signInInitialValues, validationSchema } from "@/app/(auth)/login/formSchema";
 import { Field } from "@/components/design-system/field";
 import { Input } from "@/components/ui/input";
 import { Section } from "@/components/ui/section";
@@ -17,6 +13,7 @@ import { login } from "@/lib/api/auth/services";
 import { ApiError } from "@/lib/api/client";
 import { useAuthStore } from "@/lib/store/auth-store";
 import Footer from "../_components/Footer";
+import { ARTICLES_PATH } from "@/lib/constants/constants";
 
 function SignInForm() {
   const router = useRouter();
@@ -26,7 +23,7 @@ function SignInForm() {
     mutationFn: login,
     onSuccess: (data) => {
       setAuth(data);
-      router.push("/dashboard/articles");
+      router.push(ARTICLES_PATH);
     },
     onError: (error) => {
       showToast({

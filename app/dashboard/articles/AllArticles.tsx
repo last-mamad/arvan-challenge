@@ -10,6 +10,7 @@ import { ApiError } from "@/lib/api/client";
 import { POSTS_PAGE_SIZE, usePosts } from "@/hooks/usePosts";
 import { ArticlesTable } from "./_components/ArticlesTable";
 import { getArticleColumns } from "./_components/articleColumns";
+import { ARTICLES_PATH } from "@/lib/constants/constants";
 
 export default function AllArticles({ page }: { page: number }) {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function AllArticles({ page }: { page: number }) {
         currentPage={page}
         totalPages={Math.ceil(data.total / POSTS_PAGE_SIZE)}
         onPageChange={(nextPage) =>
-          router.push(nextPage <= 1 ? "/dashboard/articles" : `/dashboard/articles?page=${nextPage}`)
+          router.push(nextPage <= 1 ? ARTICLES_PATH : `${ARTICLES_PATH}?page=${nextPage}`)
         }
         disabled={isFetching}
       />
