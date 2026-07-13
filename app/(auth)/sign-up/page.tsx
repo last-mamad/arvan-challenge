@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SignUpForm } from "@/app/(auth)/sign-up/sign-up-form";
+import { SignUpForm } from "@/app/(auth)/sign-up/SignUpForm";
 
 const TITLE = "Sign up";
 const DESCRIPTION =

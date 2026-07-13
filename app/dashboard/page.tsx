@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { DashboardView } from "@/app/dashboard/_components/dashboard-view";
+import { DashboardView } from "@/app/dashboard/DashboardView";
 
 const TITLE = "Dashboard";
 const DESCRIPTION =

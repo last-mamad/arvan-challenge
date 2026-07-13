@@ -8,12 +8,12 @@ import {
   signInFields,
   signInInitialValues,
   validationSchema,
-} from "@/app/(auth)/sign-in/form-schema";
+} from "@/app/(auth)/sign-in/formSchema";
 import { Field } from "@/components/design-system/field";
 import { Input } from "@/components/ui/input";
 import { Section } from "@/components/ui/section";
 import { showToast } from "@/components/ui/toast";
-import { login } from "@/lib/api/auth";
+import { login } from "@/lib/api/auth/services";
 import { ApiError } from "@/lib/api/client";
 import { useAuthStore } from "@/lib/store/auth-store";
 import Footer from "../_components/Footer";

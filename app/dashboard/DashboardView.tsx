@@ -1,30 +1,30 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
+import { useSessionGuard } from "@/app/dashboard/_hooks/useSessionGuard";
 import { Header } from "@/components/design-system/header";
 import { useAuthStore } from "@/lib/store/auth-store";
+import { Spinner } from "@/components/ui/spinner";
 
 function DashboardView() {
   const router = useRouter();
-  const user = useAuthStore((state) => state.user);
-  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const { user, clearAuth } = useAuthStore((state) => state);
+  const { isPending } = useSessionGuard();
 
-  useEffect(() => {
-    if (!user) {
-      router.replace("/sign-in");
-    }
-  }, [user, router]);
-
-  if (!user) {
-    return null;
+  if (isPending || !user) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-3">
+        <Spinner />
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header
-        userName={user.username}
+        userName={user.firstName}
         title="Dashboard"
         onLogout={() => {
           clearAuth();
