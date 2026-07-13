@@ -16,8 +16,10 @@ function ModalHeader({ className, title, description }: ModalHeaderProps) {
       )}
     >
       <div className="flex min-w-0 flex-1 flex-col items-start">
-        <p className="w-full truncate text-body1 text-neutral-fg1">{title}</p>
-        {description && <p className="w-full truncate text-caption1 text-neutral-fg2">{description}</p>}
+        <p className="w-full truncate text-start text-body1 text-neutral-fg1">{title}</p>
+        {description && (
+          <p className="w-full truncate text-start text-caption1 text-neutral-fg2">{description}</p>
+        )}
       </div>
     </div>
   );

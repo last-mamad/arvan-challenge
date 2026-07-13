@@ -8,6 +8,7 @@ type ModalFooterProps = {
   confirmButtonText?: string;
   onConfirm: () => void;
   danger?: boolean;
+  confirmLoading?: boolean;
 };
 
 function ModalFooter({
@@ -17,14 +18,15 @@ function ModalFooter({
   confirmButtonText = "Confirm",
   onConfirm,
   danger = false,
+  confirmLoading = false,
 }: ModalFooterProps) {
   const cancelButton = (
-    <Button variant="secondary" onClick={onCancel}>
+    <Button variant="secondary" disabled={confirmLoading} onClick={onCancel}>
       {cancelButtonText}
     </Button>
   );
   const confirmButton = (
-    <Button variant={danger ? "destructive" : "default"} onClick={onConfirm}>
+    <Button variant={danger ? "destructive" : "default"} loading={confirmLoading} onClick={onConfirm}>
       {confirmButtonText}
     </Button>
   );

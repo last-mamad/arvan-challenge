@@ -1,24 +1,7 @@
-import { EllipsisIcon } from "@/components/icons";
 import type { TableColumn } from "@/components/design-system/table";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, type DropdownMenuAction } from "@/components/ui/dropdown-menu";
-import { showToast } from "@/components/ui/toast";
-import type { Post } from "@/lib/api/posts";
 import { getExcerpt } from "@/lib/utils";
-
-/** Row actions shared by the desktop dropdown and the mobile action sheet. */
-export function getArticleActionItems(post: Post): DropdownMenuAction[] {
-  return [
-    {
-      title: "Edit",
-      onClick: () => showToast({ title: "Edit", description: post.title }),
-    },
-    {
-      title: "Delete",
-      onClick: () => showToast({ type: "error", title: "Delete", description: post.title }),
-    },
-  ];
-}
+import { ArticleRowActions } from "./ArticleRowActions";
+import { Post } from "@/lib/api/posts/interfaces";
 
 export function getArticleColumns(skip: number): TableColumn<Post>[] {
   return [
@@ -68,16 +51,7 @@ export function getArticleColumns(skip: number): TableColumn<Post>[] {
     {
       id: "actions",
       className: "w-16 text-right",
-      cell: (post) => (
-        <DropdownMenu
-          trigger={
-            <Button variant="secondary" size="icon" aria-label={`Actions for ${post.title}`}>
-              <EllipsisIcon className="size-5" />
-            </Button>
-          }
-          items={getArticleActionItems(post)}
-        />
-      ),
+      cell: (post) => <ArticleRowActions post={post} as="menu" />,
     },
   ];
 }

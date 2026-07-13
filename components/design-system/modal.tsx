@@ -32,6 +32,7 @@ type ModalProps = VariantProps<typeof modalVariants> & {
   confirmButtonText?: string;
   confirmButtonAction: () => void;
   danger?: boolean;
+  confirmLoading?: boolean;
 };
 
 function Modal({
@@ -46,6 +47,7 @@ function Modal({
   confirmButtonText = "Confirm",
   confirmButtonAction,
   danger = false,
+  confirmLoading = false,
   size,
 }: ModalProps) {
   if (!isOpen) return null;
@@ -66,6 +68,7 @@ function Modal({
         {footer ?? (
           <ModalFooter
             danger={danger}
+            confirmLoading={confirmLoading}
             cancelButtonText={cancelButtonText}
             onCancel={cancelButtonAction}
             confirmButtonText={confirmButtonText}

@@ -1,10 +1,7 @@
-import { EllipsisIcon } from "@/components/icons";
-import { ActionSheet } from "@/components/design-system/action-sheet";
 import { DataCards } from "@/components/design-system/data-cards";
 import { DataTable, type TableColumn } from "@/components/design-system/table";
-import { Button } from "@/components/ui/button";
-import type { Post } from "@/lib/api/posts";
-import { getArticleActionItems } from "./articleColumns";
+import { ArticleRowActions } from "./ArticleRowActions";
+import { Post } from "@/lib/api/posts/interfaces";
 
 type ArticlesTableProps = {
   columns: TableColumn<Post>[];
@@ -24,17 +21,7 @@ export function ArticlesTable({ columns, posts }: ArticlesTableProps) {
           getRowKey={(post) => post.id}
           titleColumnId="title"
           hiddenColumnIds={["index", "actions"]}
-          action={(post) => (
-            <ActionSheet
-              title={post.title}
-              trigger={
-                <Button variant="secondary" size="icon" aria-label={`Actions for ${post.title}`}>
-                  <EllipsisIcon className="size-5" />
-                </Button>
-              }
-              items={getArticleActionItems(post)}
-            />
-          )}
+          action={(post) => <ArticleRowActions post={post} as="sheet" />}
         />
       </div>
     </>
