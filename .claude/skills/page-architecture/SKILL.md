@@ -11,7 +11,7 @@ Use this skill whenever you're building or editing a page, route, or feature —
 
 Before writing a new component, hook, or utility:
 
-1. `Glob`/`Grep` `components/ui/` and `components/design-system/` for something that already does this (or close to it) — extend or compose an existing component before adding a new one.
+1. `Glob`/`Grep` `components/ui/` and `components/design-system/` for something that already does this (or close to it) — extend or compose an existing component before adding a new one. some components like modal or pagination, their subcomponents created in `/ui/` and the main component that we should use is inside `/design-system/`.
 2. Check `lib/api/` for an existing fetch function for the resource you need before writing a new one.
 3. If what you need is a shadcn primitive, follow the `figma-to-code` skill's shadcn-first step (search the shadcn MCP tools / `npx shadcn add`) before hand-rolling it.
 
