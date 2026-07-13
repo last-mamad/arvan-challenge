@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 function InfoIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-pt-neutral-t1-fg2" {...props}>
       <path
         d="M11.9996 2.1001C6.53961 2.1001 2.09961 6.5401 2.09961 12.0001C2.09961 17.4601 6.53961 21.9001 11.9996 21.9001C17.4596 21.9001 21.8996 17.4601 21.8996 12.0001C21.8996 6.5401 17.4596 2.1001 11.9996 2.1001ZM11.9996 20.1001C7.55961 20.1001 3.89961 16.4401 3.89961 12.0001C3.89961 7.5601 7.55961 3.9001 11.9996 3.9001C16.4396 3.9001 20.0996 7.5601 20.0996 12.0001C20.0996 16.4401 16.4396 20.1001 11.9996 20.1001Z"
         fill="currentColor"

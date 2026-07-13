@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 function EllipsisIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-pt-neutral-t1-fg2" {...props}>
       <path
         d="M4.34961 9.75C5.59225 9.75 6.59961 10.7574 6.59961 12C6.59961 13.2426 5.59225 14.25 4.34961 14.25C3.10697 14.25 2.09961 13.2426 2.09961 12C2.09961 10.7574 3.10697 9.75 4.34961 9.75Z"
         fill="currentColor"
