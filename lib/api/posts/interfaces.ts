@@ -26,3 +26,10 @@ export interface DeletedPost extends Post {
     isDeleted: boolean;
     deletedOn: string;
 }
+
+export interface ArticleInput {
+    title: string;
+    description?: string;
+    body: string;
+    tags: string[];
+}
