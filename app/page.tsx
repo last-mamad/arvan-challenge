@@ -1,7 +1,9 @@
-import { Field } from "@/components/design-system/field";
+import { Button } from "@/components/ui/button";
 
 export default function page() {
     return (
-        <Field />
+        <div>
+            <Button size="default">Hi</Button>
+        </div>
     )
 }
