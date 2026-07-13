@@ -15,7 +15,8 @@ const buttonVariants = cva(
           "bg-error-bg2 text-neutral-fg3 hover:bg-error-bg2-hover active:bg-error-bg2-press disabled:bg-error-bg2-disable focus-visible:ring-destructive/20",
         secondary:
           "border border-neutral-st2 bg-neutral-bg1 text-neutral-fg1 hover:border-neutral-st2-hover hover:text-neutral-fg1-hover active:border-neutral-st2-press active:text-neutral-fg1-press disabled:border-neutral-st2-disable disabled:text-neutral-fg1-disable",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground disabled:text-neutral-fg1-disable disabled:hover:bg-transparent",
         link: "text-info-fg1 text-body2-strong font-semibold hover:text-info-fg1-hover active:text-info-fg1-press disabled:text-info-fg1-disable",
       },
       size: {

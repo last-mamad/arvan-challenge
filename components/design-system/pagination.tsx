@@ -19,9 +19,16 @@ function getPageNumbers(currentPage: number, totalPages: number): PageNumberItem
 
   if (currentPage <= 3) return [...range(1, 5), "ellipsis-end", totalPages];
 
-  if (currentPage >= totalPages - 2) return [1, "ellipsis-start", ...range(totalPages - 4, totalPages)];
+  if (currentPage >= totalPages - 2)
+    return [1, "ellipsis-start", ...range(totalPages - 4, totalPages)];
 
-  return [1, "ellipsis-start", ...range(currentPage - 1, currentPage + 1), "ellipsis-end", totalPages];
+  return [
+    1,
+    "ellipsis-start",
+    ...range(currentPage - 1, currentPage + 1),
+    "ellipsis-end",
+    totalPages,
+  ];
 }
 
 type PaginationProps = {
@@ -29,17 +36,24 @@ type PaginationProps = {
   totalPages: number;
   onPageChange: (page: number) => void;
   className?: string;
+  disabled?: boolean;
 };
 
-function Pagination({ currentPage, totalPages, onPageChange, className }: PaginationProps) {
+function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+  className,
+  disabled = false,
+}: PaginationProps) {
   const pageNumbers = getPageNumbers(currentPage, totalPages);
 
   return (
     <PaginationRoot className={className}>
-      <PaginationContent>
+      <PaginationContent className={disabled ? "border-neutral-st2-disable" : undefined}>
         <PaginationItem>
           <PaginationPrevious
-            disabled={currentPage === 1}
+            disabled={disabled || currentPage === 1}
             onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           />
         </PaginationItem>
@@ -47,20 +61,24 @@ function Pagination({ currentPage, totalPages, onPageChange, className }: Pagina
         {pageNumbers.map((page) =>
           typeof page === "number" ? (
             <PaginationItem key={page}>
-              <PaginationLink isActive={currentPage === page} onClick={() => onPageChange(page)}>
+              <PaginationLink
+                isActive={currentPage === page}
+                disabled={disabled}
+                onClick={() => onPageChange(page)}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>
           ) : (
             <PaginationItem key={page}>
-              <PaginationEllipsis />
+              <PaginationEllipsis disabled={disabled} />
             </PaginationItem>
           ),
         )}
 
         <PaginationItem>
           <PaginationNext
-            disabled={currentPage === totalPages}
+            disabled={disabled || currentPage === totalPages}
             onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           />
         </PaginationItem>

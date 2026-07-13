@@ -12,13 +12,19 @@ export interface Post {
   };
 }
 
-interface PostsResponse {
+export interface PostsResponse {
   posts: Post[];
   total: number;
   skip: number;
   limit: number;
 }
 
-export function getPosts() {
-  return apiClient.get<PostsResponse>("/posts");
+export interface GetPostsParams {
+  limit?: number;
+  skip?: number;
+}
+
+export function getPosts({ limit = 10, skip = 0 }: GetPostsParams = {}) {
+  const query = new URLSearchParams({ limit: String(limit), skip: String(skip) });
+  return apiClient.get<PostsResponse>(`/posts?${query.toString()}`);
 }

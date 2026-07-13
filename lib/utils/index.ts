@@ -29,3 +29,9 @@ const twMerge = extendTailwindMerge({
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function getExcerpt(text: string, wordCount = 20) {
+  const words = text.trim().split(/\s+/);
+  if (words.length <= wordCount) return text;
+  return `${words.slice(0, wordCount).join(" ")}…`;
+}
