@@ -20,7 +20,9 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   });
 
   if (!res.ok) {
-    throw new ApiError(`Request failed: ${res.status} ${res.statusText}`, res.status);
+    const body = await res.json().catch(() => null);
+    const message = body && typeof body.message === "string" ? body.message : undefined;
+    throw new ApiError(message ?? `Request failed: ${res.status} ${res.statusText}`, res.status);
   }
 
   return res.json() as Promise<T>;
