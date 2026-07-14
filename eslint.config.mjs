@@ -18,6 +18,11 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "storybook-static/**",
+    // Generated test/build artifacts — not source, don't lint them.
+    "playwright-report/**",
+    "test-results/**",
+    "coverage/**",
+    "playwright/**",
   ]),
   ...storybook.configs["flat/recommended"],
 ]);
