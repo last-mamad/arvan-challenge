@@ -9,7 +9,7 @@ import { Modal } from "@/components/design-system/modal";
 import { Button } from "@/components/ui/button";
 import { ConfirmationContent } from "@/components/ui/confirmation-content";
 import { DropdownMenu, type DropdownMenuAction } from "@/components/ui/dropdown-menu";
-import { useDeletePost } from "@/hooks/usePosts";
+import { useDeletePost } from "@/app/dashboard/articles/_hooks/usePosts";
 import { ARTICLES_PATH } from "@/lib/constants/constants";
 import { Post } from "@/lib/api/posts/interfaces";
 

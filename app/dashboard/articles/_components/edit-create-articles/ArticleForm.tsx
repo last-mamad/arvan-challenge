@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Section } from "@/components/ui/section";
 import { Textarea } from "@/components/ui/textarea";
-import { useCreatePost, useUpdatePost } from "@/hooks/usePosts";
+import { useCreatePost, useUpdatePost } from "@/app/dashboard/articles/_hooks/usePosts";
 import type { Post } from "@/lib/api/posts/interfaces";
 import { ARTICLES_PATH } from "@/lib/constants/constants";
 import { TagsBox } from "./TagsBox";

@@ -7,7 +7,7 @@ import { Pagination } from "@/components/design-system/pagination";
 import { Message } from "@/components/ui/message";
 import { Spinner } from "@/components/ui/spinner";
 import { ApiError } from "@/lib/api/client";
-import { POSTS_PAGE_SIZE, usePosts } from "@/hooks/usePosts";
+import { POSTS_PAGE_SIZE, usePosts } from "@/app/dashboard/articles/_hooks/usePosts";
 import { ArticlesTable } from "./ArticlesTable";
 import { getArticleColumns } from "../../_utils/articleColumns";
 import { ARTICLES_PATH } from "@/lib/constants/constants";

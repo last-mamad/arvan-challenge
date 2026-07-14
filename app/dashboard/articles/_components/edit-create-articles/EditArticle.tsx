@@ -2,7 +2,7 @@
 
 import { Message } from "@/components/ui/message";
 import { Spinner } from "@/components/ui/spinner";
-import { usePost } from "@/hooks/usePosts";
+import { usePost } from "@/app/dashboard/articles/_hooks/usePosts";
 import { ApiError } from "@/lib/api/client";
 import { ArticleForm } from "./ArticleForm";
 

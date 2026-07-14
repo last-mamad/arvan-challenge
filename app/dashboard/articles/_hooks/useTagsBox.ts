@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 
-import { useTagList } from "@/hooks/usePosts";
+import { useTagList } from "@/app/dashboard/articles/_hooks/usePosts";
 
 type UseTagsBoxParams = {
   value: string[];
