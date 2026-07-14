@@ -29,7 +29,7 @@ export default function AllArticles({ page }: { page: number }) {
     );
 
   return (
-    <div className="flex w-full flex-col items-end gap-6">
+    <div className="flex w-full flex-col items-center md:items-end gap-6">
       <div className="relative w-full">
         <ArticlesTable columns={columns} posts={data.posts} />
         {isFetching && (

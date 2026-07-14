@@ -57,3 +57,15 @@ export const NearEnd: Story = {
   },
   render: Default.render,
 };
+export const Mobile: Story = {
+  args: {
+    ...Default.args,
+    currentPage: 5,
+    totalPages: 9,
+    siblingCount: 0,
+  },
+  parameters: {
+    chromatic: { viewports: [390] },
+  },
+  render: Default.render,
+};

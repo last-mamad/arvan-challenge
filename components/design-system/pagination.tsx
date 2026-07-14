@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Pagination as PaginationRoot,
   PaginationContent,
@@ -7,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type PageNumberItem = number | "ellipsis-start" | "ellipsis-end";
 
@@ -14,21 +17,29 @@ function range(start: number, end: number): number[] {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
-function getPageNumbers(currentPage: number, totalPages: number): PageNumberItem[] {
-  if (totalPages <= 7) return range(1, totalPages);
+// `siblingCount` = pages shown either side of the current one. 1 → up to 7 items
+// (desktop), 0 → up to 5 (mobile, fewer items to fit a narrow screen).
+function getPageNumbers(
+  currentPage: number,
+  totalPages: number,
+  siblingCount: number,
+): PageNumberItem[] {
+  const totalToShow = siblingCount * 2 + 5;
+  if (totalPages <= totalToShow) return range(1, totalPages);
 
-  if (currentPage <= 3) return [...range(1, 5), "ellipsis-end", totalPages];
+  const leftSibling = Math.max(currentPage - siblingCount, 1);
+  const rightSibling = Math.min(currentPage + siblingCount, totalPages);
+  const showLeftEllipsis = leftSibling > 2;
+  const showRightEllipsis = rightSibling < totalPages - 1;
+  const edgeCount = 3 + siblingCount * 2;
 
-  if (currentPage >= totalPages - 2)
-    return [1, "ellipsis-start", ...range(totalPages - 4, totalPages)];
-
-  return [
-    1,
-    "ellipsis-start",
-    ...range(currentPage - 1, currentPage + 1),
-    "ellipsis-end",
-    totalPages,
-  ];
+  if (!showLeftEllipsis && showRightEllipsis) {
+    return [...range(1, edgeCount), "ellipsis-end", totalPages];
+  }
+  if (showLeftEllipsis && !showRightEllipsis) {
+    return [1, "ellipsis-start", ...range(totalPages - edgeCount + 1, totalPages)];
+  }
+  return [1, "ellipsis-start", ...range(leftSibling, rightSibling), "ellipsis-end", totalPages];
 }
 
 type PaginationProps = {
@@ -37,6 +48,8 @@ type PaginationProps = {
   onPageChange: (page: number) => void;
   className?: string;
   disabled?: boolean;
+  /** Pages shown either side of the current one. Defaults to responsive (0 on mobile, 1 on desktop). */
+  siblingCount?: number;
 };
 
 function Pagination({
@@ -45,8 +58,10 @@ function Pagination({
   onPageChange,
   className,
   disabled = false,
+  siblingCount,
 }: PaginationProps) {
-  const pageNumbers = getPageNumbers(currentPage, totalPages);
+  const isMobile = useIsMobile();
+  const pageNumbers = getPageNumbers(currentPage, totalPages, siblingCount ?? (isMobile ? 0 : 1));
 
   return (
     <PaginationRoot className={className}>
