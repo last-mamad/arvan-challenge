@@ -16,28 +16,23 @@ type UseTagsBoxParams = {
 export function useTagsBox({ value, onChange }: UseTagsBoxParams) {
   const { data: fetchedTags, isPending } = useTagList();
   const [newTag, setNewTag] = useState("");
-  // Tags the user typed (or that were pre-filled on edit) which aren't in the
-  // fetched list. Kept so they stay visible in the box even when unchecked.
+  // Tags the user typed (or that were pre-filled on edit) which aren't in the fetched list. Kept so they stay visible in the box even when unchecked.
   const [customTags, setCustomTags] = useState<string[]>(() => value);
 
-  const sortedTags = useMemo(
-    () => [...(fetchedTags ?? [])].sort((a, b) => a.localeCompare(b)),
-    [fetchedTags],
-  );
+  // The full, stable list: custom tags (not in the fetched list) first, then the sorted fetched tags.
+  const allTags = useMemo(() => {
+    const sorted = [...(fetchedTags ?? [])].sort((a, b) => a.localeCompare(b));
+    const fetchedSet = new Set(sorted);
+    const extras = [...new Set(customTags)].filter((tag) => !fetchedSet.has(tag));
+    return [...extras, ...sorted];
+  }, [fetchedTags, customTags]);
 
-  // Custom tags (not in the fetched list) show first, then the sorted list.
+  // The filtered view shown in the box, narrowed by what the user is typing.
   const displayTags = useMemo(() => {
-    const fetchedSet = new Set(sortedTags);
-    const extras = customTags.filter(
-      (tag, index) => !fetchedSet.has(tag) && customTags.indexOf(tag) === index,
-    );
-    const all = [...extras, ...sortedTags];
-
-    // Filter the list by what the user is typing in the input.
     const query = newTag.trim().toLowerCase();
-    if (!query) return all;
-    return all.filter((tag) => tag.toLowerCase().includes(query));
-  }, [customTags, sortedTags, newTag]);
+    if (!query) return allTags;
+    return allTags.filter((tag) => tag.toLowerCase().includes(query));
+  }, [allTags, newTag]);
 
   // The tag list can be long, so only the visible rows are rendered.
   const listRef = useRef<HTMLDivElement>(null);
@@ -56,7 +51,7 @@ export function useTagsBox({ value, onChange }: UseTagsBoxParams) {
     const trimmed = newTag.trim();
     if (!trimmed) return;
 
-    if (displayTags.includes(trimmed)) {
+    if (allTags.includes(trimmed)) {
       // Already listed → Enter just checks/unchecks it.
       toggle(trimmed);
     } else {

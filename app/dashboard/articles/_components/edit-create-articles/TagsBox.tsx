@@ -46,7 +46,7 @@ export function TagsBox({ value, onChange, className }: TagsBoxProps) {
           </div>
         ) : displayTags.length === 0 ? (
           <p className="p-4 text-body2 text-neutral-fg2">
-            {newTag.trim() ? "No matching tags." : "No tags available."}
+            {newTag.trim() ? "No matching tags. Press Enter to create it." : "No tags available."}
           </p>
         ) : (
           <div
