@@ -1,6 +1,6 @@
 import type { TableColumn } from "@/components/design-system/table";
 import { getExcerpt } from "@/lib/utils";
-import { ArticleRowActions } from "./ArticleRowActions";
+import { ArticleRowActions } from "../_components/all-articles/ArticleRowActions";
 import { Post } from "@/lib/api/posts/interfaces";
 
 export function getArticleColumns(skip: number): TableColumn<Post>[] {

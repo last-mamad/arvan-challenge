@@ -8,8 +8,8 @@ import { Message } from "@/components/ui/message";
 import { Spinner } from "@/components/ui/spinner";
 import { ApiError } from "@/lib/api/client";
 import { POSTS_PAGE_SIZE, usePosts } from "@/hooks/usePosts";
-import { ArticlesTable } from "./_components/ArticlesTable";
-import { getArticleColumns } from "./_components/articleColumns";
+import { ArticlesTable } from "./ArticlesTable";
+import { getArticleColumns } from "../../_utils/articleColumns";
 import { ARTICLES_PATH } from "@/lib/constants/constants";
 
 export default function AllArticles({ page }: { page: number }) {

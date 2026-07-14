@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ArticleForm } from "@/app/dashboard/articles/_components/ArticleForm";
+import { ArticleForm } from "@/app/dashboard/articles/_components/edit-create-articles/ArticleForm";
 
 export const metadata: Metadata = {
   title: "Dashboard - New Article",

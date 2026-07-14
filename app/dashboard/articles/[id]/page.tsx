@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { EditArticle } from "@/app/dashboard/articles/_components/EditArticle";
+import { EditArticle } from "@/app/dashboard/articles/_components/edit-create-articles/EditArticle";
 
 export const metadata: Metadata = {
   title: "Dashboard - Edit Article",
