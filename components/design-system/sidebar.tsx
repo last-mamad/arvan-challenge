@@ -22,6 +22,13 @@ function Sidebar({ className, items, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
+  const handleClick = (href: string) => {
+    if (pathname !== href) {
+      router.push(href);
+    }
+    onNavigate?.();
+  };
+
   return (
     <nav
       data-slot="sidebar"
@@ -36,10 +43,7 @@ function Sidebar({ className, items, onNavigate }: SidebarProps) {
           title={item.title}
           description={item.description}
           selected={pathname === item.href}
-          onClick={() => {
-            router.push(item.href);
-            onNavigate?.();
-          }}
+          onClick={() => handleClick(item.href)}
         />
       ))}
     </nav>
