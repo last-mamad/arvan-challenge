@@ -3,30 +3,37 @@
 The project tests in layers, each catching a different class of bug. Aim for the
 right layer, not maximum coverage.
 
-| Layer     | Tool                     | What it catches                     | Where                   |
-| --------- | ------------------------ | ----------------------------------- | ----------------------- |
-| Unit      | Vitest                   | Pure logic (utils, hook logic)      | `*.test.ts` (colocated) |
-| Component | Storybook + Vitest addon | Renders & behaves in a real browser | `stories/**`            |
-| Visual    | Chromatic                | Appearance / layout regressions     | `stories/**`            |
-| E2E       | Playwright               | Real user flows across the app      | `tests/**`              |
+| Layer     | Tool                     | What it catches                     | Where             |
+| --------- | ------------------------ | ----------------------------------- | ----------------- |
+| Unit      | Vitest (jsdom)           | Pure logic (utils, hook logic)      | `**/__tests__/**` |
+| Component | Storybook + Vitest addon | Renders & behaves in a real browser | `stories/**`      |
+| Visual    | Chromatic                | Appearance / layout regressions     | `stories/**`      |
+| E2E       | Playwright               | Real user flows across the app      | `tests/**`        |
 
 ## Unit tests (Vitest)
 
-Vitest is configured (`vitest.config.ts`) and runs in a real browser via
-`@vitest/browser-playwright`. Reserve unit tests for **logic-heavy, pure pieces**
-where an e2e test would be overkill:
-
-- Pure utils with branching (`getExcerpt`, …).
-- Hooks with real derived logic — e.g. `useTagsBox` (filtering, dedup, custom tags,
-  and adding). Test with `renderHook`.
-
-Don't unit-test thin fetch hooks (`usePosts`, `useCreatePost`) — those are covered
-by e2e with mocked API responses.
+`vitest.config.ts` defines two projects: **`unit`** (jsdom) for the tests below, and
+**`storybook`** (real browser) for the story tests. Unit tests live in a
+`__tests__/` folder next to the code they cover.
 
 ```bash
-npx vitest run        # once
+npm run test:unit     # unit project only (fast, jsdom)
+npx vitest run        # unit + story (component) tests
 npx vitest            # watch
 ```
+
+Reserve unit tests for **logic-heavy, pure pieces** where an e2e test would be
+overkill. What's covered today:
+
+- `lib/utils/__tests__/` — `getExcerpt` (word truncation) and `cn` (the custom
+  `twMerge` token config).
+- `hooks/__tests__/` — `useDebounce` (timing, with fake timers).
+- `app/dashboard/articles/_hooks/__tests__/` — `useTagsBox` (filter, dedup, custom
+  tags, add/toggle), tested with `renderHook`. `useTagList` and the virtualizer are
+  mocked so the test stays offline and focused on the hook's logic.
+
+Don't unit-test thin fetch hooks (`usePosts`, `useCreatePost`) or `useSessionGuard` —
+those are covered by e2e with mocked API responses.
 
 ## Component tests (Storybook stories as tests)
 

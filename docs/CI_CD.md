@@ -4,14 +4,15 @@ Single GitHub Actions workflow: `.github/workflows/ci-cd.yml`, triggered on ever
 `push`. Jobs run **sequentially** via `needs`, so a failure stops the chain:
 
 ```
-chromatic  →  e2e  →  build  →  deploy
+unit  →  chromatic  →  e2e  →  build  →  deploy
 ```
 
-1. **chromatic** — builds Storybook and runs visual regression (see `STORYBOOK.md`).
-2. **e2e** — runs the Playwright suite; uploads `playwright-report/`.
-3. **build** — `npm run build`, a gate that the app compiles.
-4. **deploy** — SSHes into the server, pulls, builds, and restarts (`pm2`). Runs
-   **only on `main`**; other branches run steps 1–3 only.
+1. **unit** — fast Vitest unit tests (`npm run test:unit`); gates the rest.
+2. **chromatic** — builds Storybook and runs visual regression (see `STORYBOOK.md`).
+3. **e2e** — runs the Playwright suite; uploads `playwright-report/`.
+4. **build** — `npm run build`, a gate that the app compiles.
+5. **deploy** — SSHes into the server, pulls, builds, and restarts (`pm2`). Runs
+   **only on `main`**; other branches run steps 1–4 only.
 
 ## Required GitHub secrets
 

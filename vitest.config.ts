@@ -31,6 +31,16 @@ export default defineConfig({
           },
         },
       },
+      // Plain unit tests for pure logic (utils + hooks), run in jsdom.
+      {
+        resolve: { tsconfigPaths: true },
+        test: {
+          name: "unit",
+          environment: "jsdom",
+          globals: true,
+          include: ["**/__tests__/**/*.test.{ts,tsx}"],
+        },
+      },
     ],
   },
 });

@@ -8,8 +8,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # 1) Visual regression — build Storybook and snapshot every story.
+  # 1) Unit tests — fast logic checks (utils + hooks), gate the rest.
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run test:unit
+
+  # 2) Visual regression — build Storybook and snapshot every story.
   chromatic:
+    needs: unit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +38,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
 
-  # 2) End-to-end tests — runs only if Chromatic passed.
+  # 3) End-to-end tests — runs only if Chromatic passed.
   e2e:
     needs: chromatic
     runs-on: ubuntu-latest
@@ -49,7 +62,7 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-  # 3) Production build — gate that the app compiles, runs only if e2e passed.
+  # 4) Production build — gate that the app compiles, runs only if e2e passed.
   build:
     needs: e2e
     runs-on: ubuntu-latest
@@ -62,7 +75,7 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  # 4) Deploy — SSH into the Ubuntu server, pull, build, restart. main only.
+  # 5) Deploy — SSH into the Ubuntu server, pull, build, restart. main only.
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main'

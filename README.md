@@ -5,6 +5,21 @@ Challenge**. Authenticate, browse a paginated table of posts, and create, edit, 
 delete articles, with a fully responsive desktop/mobile experience.
 
 ### 🔗 Live demo → **[challenge.kamali.online](https://challenge.kamali.online)**
+#### 🔐 Signing in
+
+> [!NOTE]
+> **Log in with an existing DummyJSON user** — the backend has no sign-up endpoint,
+> so credentials must belong to a real DummyJSON account. For example:
+>
+> ```
+> username: emilys
+> password: emilyspass
+> ```
+>
+> (More users at [dummyjson.com/users](https://dummyjson.com/users).)
+>
+> **Register is mocked** — since DummyJSON doesn't support registration, submitting
+> the sign-up form signs you in as a demo user rather than creating a new account.
 
 ---
 
@@ -86,6 +101,6 @@ Four layers, each catching a different class of bug — unit (Vitest), component
 
 ## 🚀 Deployment
 
-Every push runs the pipeline **`chromatic → e2e → build → deploy`**; `main` deploys
-to an Ubuntu server via SSH (pm2 + nginx). Details in
+Every push runs the pipeline **`unit → chromatic → e2e → build → deploy`**; `main`
+deploys to an Ubuntu server via SSH (pm2 + nginx). Details in
 **[docs/CI_CD.md](./docs/CI_CD.md)**.
