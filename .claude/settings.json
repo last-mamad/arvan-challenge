@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/)",
+      "Edit(*)",
+      "Bash(*)"  
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
+}
