@@ -19,9 +19,6 @@ export const Default: Story = {
   args: {},
 };
 
-// No pseudo-states addon is installed, so hover is demonstrated by actually
-// dispatching a hover event rather than a parameters.pseudo flag (which
-// would be silently ignored without that addon).
 export const Hover: Story = {
   args: {},
   play: async ({ canvasElement }) => {

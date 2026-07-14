@@ -13,7 +13,8 @@
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:codegen": "playwright codegen http://localhost:3000"
+    "test:e2e:codegen": "playwright codegen http://localhost:3000",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.101.2",
@@ -47,6 +48,7 @@
     "@types/react-dom": "^19",
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
+    "chromatic": "^18.0.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "eslint-config-prettier": "^10.1.8",
