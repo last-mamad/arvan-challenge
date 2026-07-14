@@ -3,6 +3,7 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tansta
 import { showToast } from "@/components/ui/toast";
 import { ApiError } from "@/lib/api/client";
 import type { ArticleInput } from "@/lib/api/posts/interfaces";
+import { useAuthStore } from "@/lib/store/auth-store";
 import {
   createPost,
   deletePost,
@@ -50,9 +51,12 @@ export function useTagList() {
 /** Creates a post, then invalidates the posts table. */
 export function useCreatePost() {
   const queryClient = useQueryClient();
+  // The add-post endpoint requires the author's id; take it from the session
+  // rather than the form, since it isn't user-editable.
+  const userId = useAuthStore((state) => state.user?.id);
 
   return useMutation({
-    mutationFn: (data: ArticleInput) => createPost(data),
+    mutationFn: (data: ArticleInput) => createPost({ ...data, userId }),
     onSuccess: () => {
       showToast({ title: "Article created successfully" });
       queryClient.invalidateQueries({ queryKey: ["posts"] });

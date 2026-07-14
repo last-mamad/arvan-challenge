@@ -32,4 +32,5 @@ export interface ArticleInput {
     description?: string;
     body: string;
     tags: string[];
+    userId?: number;
 }
