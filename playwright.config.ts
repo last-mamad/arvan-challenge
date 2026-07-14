@@ -35,40 +35,25 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Logs in once and saves the session to playwright/.auth/user.json.
+    // Dashboard specs opt in with: test.use({ storageState: "playwright/.auth/user.json" }).
+    { name: "setup", testMatch: /.*\.setup\.ts/ },
+
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
+      dependencies: ["setup"],
     },
-
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
     {
       name: "Mobile Safari",
       use: { ...devices["iPhone 12"] },
+      dependencies: ["setup"],
     },
-
-    /* Test against branded browsers. */
     {
       name: "Microsoft Edge",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
+      dependencies: ["setup"],
     },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
 
   /* Run your local dev server before starting the tests */

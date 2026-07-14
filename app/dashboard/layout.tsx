@@ -9,12 +9,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuthStore } from "@/lib/store/auth-store";
 import { useUiStore } from "@/lib/store/ui-store";
-import { ARTICLES_PATH } from "@/lib/constants/constants";
-
-const SIDEBAR_ITEMS = [
-  { title: "All Articles", href: ARTICLES_PATH },
-  { title: "New Article", href: `${ARTICLES_PATH}/create` },
-];
+import { SIDEBAR_ITEMS } from "@/lib/constants/constants";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
