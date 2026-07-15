@@ -61,7 +61,10 @@ test('Check Table Rendering (Loading, Data and Pagination)', async ({ page }) =>
   await expect(page.getByRole('cell', { name: '@user_101' })).toBeVisible();
   await expect(page.getByRole('cell', { name: 'history, american' }).first()).toBeVisible();
   await expect(page.getByRole('cell', { name: 'Body content for test article 1. Lorem ipsum dolor sit amet, consectetur.' })).toBeVisible();
-  await expect(page.getByRole('cell', { name: '7/14/' }).first()).toBeVisible();
+
+  // The "Created" column renders new Date() (a stub — the API has no date), so derive today's value the same way instead of hardcoding it, otherwise it goes stale daily.
+  const today = new Date().toLocaleDateString('en-US');
+  await expect(page.getByRole('cell', { name: today }).first()).toBeVisible();
   await expect(page.getByRole('cell', { name: 'Actions for Test article 1', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Go to next page' }).click();
   await expect(page.getByRole('cell', { name: 'Test article 11', exact: true }).locator('span')).toBeVisible();
