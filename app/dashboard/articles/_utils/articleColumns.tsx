@@ -45,6 +45,7 @@ export function getArticleColumns(skip: number): TableColumn<Post>[] {
       header: "Created",
       className: "max-w-[120px]",
       cell: () => (
+        // I used new Date here as a placeholder because dummyjson doesn't provide a created date for posts. In a real application, you would use the actual created date from the post data.
         <span className="block whitespace-nowrap">{new Date().toLocaleDateString("en-US")}</span>
       ),
     },
