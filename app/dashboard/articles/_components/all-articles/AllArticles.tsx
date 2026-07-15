@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 
 import { Pagination } from "@/components/design-system/pagination";
@@ -17,8 +16,7 @@ export default function AllArticles({ page }: { page: number }) {
   const { data, isPending, isError, error, isFetching } = usePosts(page);
 
   const skip = (page - 1) * POSTS_PAGE_SIZE;
-
-  const columns = useMemo(() => getArticleColumns(skip), [skip]);
+  const columns = getArticleColumns(skip);
 
   if (isPending) return <Spinner className="size-8" />;
   if (isError)
