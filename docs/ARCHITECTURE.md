@@ -39,12 +39,31 @@
 
 ## Auth model
 
-There is **no middleware** — route guarding is client-side. `useSessionGuard`
-(`app/dashboard/_hooks/`) reads the persisted auth store on mount, refreshes the
-session, and redirects to `/login` if there's no valid session. The auth store
-(`lib/store/auth-store.ts`) persists to `localStorage` (`auth-storage`) and mirrors
-the access token into an `auth-token` cookie. See `TESTING.md` for how e2e reuses a
-saved session via `storageState`.
+Route guarding has **two layers**, and neither is a real security boundary — the
+API is the only source of truth for auth.
+
+- **`proxy.ts`** (the App Router's middleware equivalent, run at the edge on every
+  matched navigation) does *coarse* routing based only on the presence of the
+  `auth-token` cookie: it sends `/` to the articles list or `/login`, keeps
+  logged-out users out of `/dashboard`, and bounces logged-in users away from the
+  auth routes. It never validates the token, so it's a UX/redirect optimization,
+  **not** a security gate — a forged cookie can reach the dashboard shell.
+- **`useSessionGuard`** (`app/dashboard/_hooks/`) does the *real* client-side
+  check: on mount it refreshes the session against the API and, on failure, clears
+  the store and redirects to `/login`. A forged cookie fails this refresh and is
+  bounced out; in a real backend every data request also requires a valid bearer
+  token, so no protected data is reachable regardless.
+
+The auth store (`lib/store/auth-store.ts`) persists to `localStorage`
+(`auth-storage`) and mirrors the access token into the `auth-token` cookie.
+
+> **Token storage caveat:** DummyJSON returns tokens in the response body (not as
+> an `httpOnly` cookie), so they're held client-side and are therefore exposed to
+> XSS. Against a real ArvanCloud backend the tokens would live in `httpOnly` +
+> `Secure` + `SameSite` cookies set by the server, and `proxy.ts` would stay a
+> pure UX layer.
+
+See `TESTING.md` for how e2e reuses a saved session via `storageState`.
 
 ## Related docs
 

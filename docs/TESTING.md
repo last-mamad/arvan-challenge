@@ -78,7 +78,7 @@ npm run test:e2e:ui                       # UI mode (debug)
 npm run test:e2e:codegen                  # record against the running app
 ```
 
-Projects: `chromium`, `firefox`, `Mobile Safari` (iPhone 12), `Microsoft Edge`.
+Projects: `chromium` (Desktop Chrome), `Mobile Safari` (iPhone 12), `Microsoft Edge`.
 
 ### Authentication — `storageState`
 
