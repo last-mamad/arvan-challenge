@@ -17,7 +17,13 @@
   - `app/dashboard/articles/` — list (`page.tsx`), create (`create/`), edit (`[id]/`)
   - `_components/` · `_hooks/` · `_utils/` — colocated, route-local files
     (`_`-prefixed → ignored by the router)
-- `components/ui/` — shadcn primitives/atoms, flat files. Prefer regenerating via the CLI over hand-editing.
+- `components/ui/` — shadcn primitives/atoms, flat files. You **own** these (shadcn
+  is copy-in, not a dependency), so adapting them to the design tokens is expected.
+  The rule is about _what_ you change: scaffold via the CLI and keep the primitive's
+  **structure/behaviour** close to upstream so CLI updates stay mergeable; confine
+  changes to **styling/token bindings**, and push heavier composition up into
+  `components/design-system/`. On a shadcn update, don't blindly re-run the CLI over
+  a customised file — diff/merge manually (token-based colours keep that diff small).
 - `components/design-system/` — composed product components built on `components/ui/`
 - `lib/api/<resource>/` — `interfaces.ts` (types) + `services.ts` (fetch fns) per resource, over `lib/api/client.ts` (`apiClient`)
 - `hooks/` — reusable hooks used by more than one route (`@/hooks`); route-specific hooks live in that route's `_hooks/`

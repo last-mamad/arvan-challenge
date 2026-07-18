@@ -11,7 +11,7 @@ function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxP
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        "size-4 shrink-0 rounded-[4px] outline-none transition-colors",
+        "size-4 shrink-0 rounded-[4px] transition-colors",
         "border-2 border-neutral-st1 bg-neutral-bg1",
         "hover:border-neutral-st1-hover hover:bg-neutral-bg1-hover",
         "active:border-neutral-st1-press active:bg-neutral-bg1-press",
